@@ -12,7 +12,7 @@ def numerical_plot(
     color = None,
     title = None ,
     font_size = 10,
-    color_scheme = "yellowgreenblue",
+    colour_scheme = "yellowgreenblue",
     plot_width = 400,
     plot_height = 300.
     x_transform=False,
@@ -48,10 +48,10 @@ def numerical_plot(
     font_size  : str, optional
       Variable use to set the size of the axis labels and title.
 
-    color_scheme: str, optional
+    colour_scheme: str, optional
       The color scheme used for the plot.
       Other color schemes can be "blues", "tealblues", "oranges", "greenblue", "redpurple", etc.
-      Other proper color scheme reference can be found inhttps://vega.github.io/vega/docs/schemes/
+      Other proper color scheme reference can be found in https://vega.github.io/vega/docs/schemes/
 
     plot_width: int, optional
       The width of the plot
