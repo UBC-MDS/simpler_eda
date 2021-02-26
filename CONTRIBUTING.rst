@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/UBC-MDS/simpler_eda/issues or email to hkcmul@gmail.com if you do not have a GitHub account.
+Report bugs at https://github.com/UBC-MDS/simpler_eda/issues or email to `deepcl@student.ubc.ca <deepcl@student.ubc.ca>` if you do not have a GitHub account.
 
 If you are reporting a bug, please include:
 
@@ -45,7 +45,7 @@ articles, and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/UBC-MDS/simpler_eda/issues.
+The best way to send feedback is to file an issue at https://github.com/UBC-MDS/simpler_eda/issues. Otherwise, email to `deepcl@student.ubc.ca <deepcl@student.ubc.ca>` is the alternative. 
 
 If you are proposing a feature:
 
@@ -56,7 +56,6 @@ If you are proposing a feature:
 
 Get Started!
 ------------
-
 
 Ready to contribute?
 
