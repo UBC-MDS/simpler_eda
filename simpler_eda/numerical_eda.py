@@ -1,7 +1,7 @@
 import altair as alt
 import numpy as np
 import pandas as pd
-import warnings
+
 
 
 def numerical_plot(
@@ -73,8 +73,8 @@ def numerical_plot(
     Examples
     --------
     >>> import altair as alt
-    >>> import numpy as np
     >>> import pandas as pd
+    >>> import numpy as np
     >>> from simpler_eda.numerical_eda import numerical_plot
     >>> from vega_datasets import data
     >>> numerical_plot(data.cars(), xval = "Horsepower", yval = "Acceleration", plot_type = "line",
