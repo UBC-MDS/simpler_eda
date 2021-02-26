@@ -57,7 +57,12 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `simpler_eda` for local development.
+
+Ready to contribute?
+
+In general, we ask you to follow the GitHub Flow workflow.
+
+Here's how to set up simpler_eda for local development.
 
 1. If you don't have a GitHub, you would need to create one and you would need to install Git for the following steps.
 2. Fork the `simpler_eda` repo on GitHub.
