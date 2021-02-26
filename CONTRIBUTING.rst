@@ -15,7 +15,7 @@ Types of Contributions
 Report Bugs
 ~~~~~~~~~~~
 
-Report bugs at https://github.com/nichowu/simpler_eda/issues.
+Report bugs at https://github.com/UBC-MDS/simpler_eda/issues or email to hkcmul@gmail.com if you do not have a GitHub account.
 
 If you are reporting a bug, please include:
 
@@ -45,7 +45,7 @@ articles, and such.
 Submit Feedback
 ~~~~~~~~~~~~~~~
 
-The best way to send feedback is to file an issue at https://github.com/nichowu/simpler_eda/issues.
+The best way to send feedback is to file an issue at https://github.com/UBC-MDS/simpler_eda/issues.
 
 If you are proposing a feature:
 
@@ -57,14 +57,20 @@ If you are proposing a feature:
 Get Started!
 ------------
 
-Ready to contribute? Here's how to set up `simpler_eda` for local development.
 
-1. Fork the `simpler_eda` repo on GitHub.
-2. Clone your fork locally::
+Ready to contribute?
+
+In general, we ask you to follow the GitHub Flow workflow.
+
+Here's how to set up simpler_eda for local development.
+
+1. If you don't have a GitHub, you would need to create one and you would need to install Git for the following steps.
+2. Fork the `simpler_eda` repo on GitHub.
+3. Clone your fork locally::
 
     $ git clone git@github.com:your_name_here/simpler_eda.git
 
-3. Install your local copy (it is recommended to do this with a virtual environment). The method of installation will depend on the packaging library being used.
+4. Install your local copy (it is recommended to do this with a virtual environment). The method of installation will depend on the packaging library being used.
    For example, if `setuptools` is being used (a setup.py file is present), install simpler_eda with:
 
    .. code-block:: console
@@ -77,23 +83,23 @@ Ready to contribute? Here's how to set up `simpler_eda` for local development.
 
        $ poetry install
 
-4. Create a branch for local development and make your changes locally::
+5. Create a branch for local development and make your changes locally::
 
     $ git checkout -b name-of-your-bugfix-or-feature
 
-5. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
+6. When you're done making changes, check that your changes conform to any code formatting requirements and pass any tests.
    For example, if the package uses the poetry package management library, black formatting style and pytest for testing::
 
     $ poetry run black simpler_eda
     $ poetry run pytest
 
-6. Commit your changes and push your branch to GitHub::
+7. Commit your changes and push your branch to GitHub::
 
     $ git add .
     $ git commit -m "Your detailed description of your changes."
     $ git push origin name-of-your-bugfix-or-feature
 
-7. Submit a pull request through the GitHub website.
+8. Submit a pull request through the GitHub website.
 
 Pull Request Guidelines
 -----------------------
