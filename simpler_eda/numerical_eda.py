@@ -45,24 +45,24 @@ def numerical_plot(
     tilte : str, optional
       Variable use to set the title of the plot.
     
-    font_size  : str, default = 10
+    font_size  : str, optional
       Variable use to set the size of the axis labels and title.
 
-    color_theme: str, default = 'yellowgreenblue'
+    color_theme: str, optional
       The color scheme used for the plot.
       Other color schemes can be "blues", "tealblues", "oranges", "greenblue", "redpurple", etc.
       Other proper color scheme reference can be found inhttps://vega.github.io/vega/docs/schemes/
 
-    plot_width: int, default=400
+    plot_width: int, optional
       The width of the plot
 
-    plot_height: int, default=300
+    plot_height: int, optional
       The heigh of the plot
 
-    x_transform : bool, default = False
+    x_transform : bool, optional
       Determines whether a log transformation occurs on the x-axis.
     
-    y_transform : bool, default = False
+    y_transform : bool, optional
       Determines whether a log transformation occurs on the y-axis.
     
     Returns
