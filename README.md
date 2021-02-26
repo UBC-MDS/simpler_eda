@@ -5,7 +5,7 @@
 
 ## Overview
 
-Exploratory Data analysis (EDA) is an important step in any data analysis.  However, carrying out EDA with the Altair package requires a lot of coding effort. Moreover, it assumes a basic knowledge of functions and grammar of graphics syntax that are appropriate for visualizing categorical and numerical variables. The simpler_eda package addresses this issue by providing functions that are tailored to produce categorical, numerical and correlation plots by a single line of code. Furthermore, the package provides customization capability for the plots based on specific user needs (theme, title, font, size and etc.). The users are able to spend more time on analyzing the data set and less time configuring Altair plot settings.
+Exploratory Data analysis (EDA) is an important step in any data analysis.  However, carrying out EDA with the Altair package requires a lot of coding effort. Moreover, it assumes a basic knowledge of functions and grammar of graphics syntax that are appropriate for visualizing categorical and numerical variables. The simpler_eda package addresses this issue by providing functions that are tailored to produce categorical, numerical and correlation plots using a single line of code. Furthermore, the package provides customization capability for the plots based on specific user needs (theme, title, font, size and etc.). The users are able to spend more time on analyzing the data set and less time configuring Altair plot settings.
 
 ## Installation
 
@@ -15,13 +15,13 @@ $ pip install -i https://test.pypi.org/simple/ simpler_eda
 
 ## Functions
 
-This package contains three functions, each that accepts a pandas `DataFrame` for EDA. No specific data set is required for the functions to work. Each functions will have it's own required and optional arguements to configure the properties and settings of the plot. 
+This package contains three functions, each that accepts a pandas `DataFrame` for EDA. No specific data set is required for the functions to work. Each functions will have it's own required and optional arguements to configure the properties of the plot. 
 
 1. `correlation_eda_plot:` This function takes in a data frame object, a list of numerical features to be correlated (instead of all features) and outputs a correlation plot object. User can optionally change default arguements for color/fill, title, size of text and color-scheme.
 
-2. `numerical_eda_plot:` This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship of the two features. User can optionally change default arguements for plot-type, color/fill, title, size of text and color-scheme.
+2. `numerical_eda_plot:` This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship of the two features. User can optionally change default arguements for plot-type, color/fill, title, size of text, color-scheme and apply logarithm scaling on the x and y axis.
 
-3. `categorical_eda_plot:` This function takes in a data frame object, a numerical and a categorical column and produces either a jitter, violin and boxplot for comparison. User can optionally change default arguements for plot-type, color/fill, title, size of text and color-scheme.
+3. `categorical_eda_plot:` This function takes in a data frame object, a numerical and a categorical column and produces either a jitter, violin, barchar and boxplot (two categoricals) for comparison. User can optionally change default arguements for plot-type, color/fill, title, size of text and color-scheme.
 
 ## How the simpler_eda package fits into the Python ecosystem
 
