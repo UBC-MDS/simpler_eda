@@ -28,7 +28,15 @@ The official documentation is hosted on Read the Docs: https://simpler_eda.readt
 
 ## Contributors
 
-We welcome and recognize all contributions. You can see a list of current contributors in the [contributors tab](https://github.com/nichowu/simpler_eda/graphs/contributors).
+### Development Lead
+
+|Contributor Name     | GitHub Username|
+|---------------------|-----------|
+|Cheuk (Chuck) Ho  | [ChuckHo777](https://github.com/marvinmin)|
+|Deepak Sidhu      | [Deepak](https://github.com/deepaksidhu)     |
+|Nicholas Wu       | [Nicholas Wu](https://github.com/nichowu) |
+
+We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/simpler_eda/blob/main/CONTRIBUTING.rst).
 
 ### Credits
 
