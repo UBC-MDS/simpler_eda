@@ -32,9 +32,9 @@ The official documentation is hosted on Read the Docs: https://simpler_eda.readt
 
 |Contributor Name     | GitHub Username|
 |---------------------|-----------|
-|Cheuk (Chuck) Ho  | [ChuckHo777](https://github.com/marvinmin)|
-|Deepak Sidhu      | [Deepak](https://github.com/deepaksidhu)     |
-|Nicholas Wu       | [Nicholas Wu](https://github.com/nichowu) |
+|Cheuk (Chuck) Ho  | [ChuckHo777](https://github.com/ChuckHo777)|
+|Deepak Sidhu      | [deepaksidhu](https://github.com/deepaksidhu)     |
+|Nicholas Wu       | [nichowu](https://github.com/nichowu) |
 
 We welcome and recognize all contributions. Please find the guide for contribution in [Contributing Document](https://github.com/UBC-MDS/simpler_eda/blob/main/CONTRIBUTING.rst).
 
