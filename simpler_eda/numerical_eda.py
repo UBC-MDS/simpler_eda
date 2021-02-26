@@ -6,15 +6,17 @@ import warnings
 
 def numerical_plot(
     data,
-    xval=None,
-    yval=None,
-    plot_type="scatter",
-    color=None,
-    title=None,
-    font_size=10,
-    color_scheme=None,
+    xval = None,
+    yval = None,
+    plot_type = "scatter",
+    color = None,
+    title = None ,
+    font_size = 10,
+    color_theme = "yellowgreenblue",
+    plot_width = 400,
+    plot_height = 300.
     x_transform=False,
-    y_transorm=False,
+    y_transform=False,
 ):
     """
     This function takes in a data frame object, two numeric columns,
@@ -27,22 +29,42 @@ def numerical_plot(
     ----------
     data : pandas.core.frame.DataFrame
        Input dataframe object.
+    
     xval : str
       Variable used to represent the x-axis.
+    
     yval : str
       Variable used to represent the y-axis.
+    
     plot_type : str
       Variable used to represent the graphical relationship between xval and yval.
-    color : str
+    
+    color : str, optional
       Variable used to set the color of the marks in the plot object.
-    tilte : str
+    
+    tilte : str, optional
       Variable use to set the title of the plot.
-    font_size  : str
+    
+    font_size  : str, default = 10
       Variable use to set the size of the axis labels and title.
-    x_transform : bool
+
+    color_theme: str, default = 'yellowgreenblue'
+      The color scheme used for the plot.
+      Other color schemes can be "blues", "tealblues", "oranges", "greenblue", "redpurple", etc.
+      Other proper color scheme reference can be found inhttps://vega.github.io/vega/docs/schemes/
+
+    plot_width: int, default=400
+      The width of the plot
+
+    plot_height: int, default=300
+      The heigh of the plot
+
+    x_transform : bool, default = False
       Determines whether a log transformation occurs on the x-axis.
-    y_transform : bool
+    
+    y_transform : bool, default = False
       Determines whether a log transformation occurs on the y-axis.
+    
     Returns
     -------
     altair.vegalite.v3.api.Chart
@@ -50,6 +72,9 @@ def numerical_plot(
       along with summary statisitics such as mean, median and variance.
     Examples
     --------
+    >>> import altair as alt
+    >>> import numpy as np
+    >>> import pandas as pd
     >>> from simpler_eda.numerical_eda import numerical_plot
     >>> from vega_datasets import data
     >>> numerical_plot(data.cars(), xval = "Horsepower", yval = "Acceleration", plot_type = "line",
@@ -57,3 +82,5 @@ def numerical_plot(
                  title = " Horsepower vs Acceleration",
                  font_size = 10)
     """
+
+    return numerical_plot
