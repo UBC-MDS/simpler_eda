@@ -3,53 +3,49 @@ import altair as alt
 import numpy as np
 
 
-def corr_map(path, data_type, features, sep=",", color_theme='yellowgreenblue', plot_width=400, plot_height=300, title="Correlation Map"):
-    """
-    Plot a correlation map for the given list of feature and raw (the path and data type). 
-    Users can also set multiple arugment regarding the data (e.g. the separator) and the setting for the correlation plot
-    from color schemes, plot withh & height, title.
+def corr_map(data, features, color_schme='yellowgreenblue', plot_width=400, plot_height=300, title="Correlation Map"):
+  """
+  Plot a correlation map with the given dataframe object and a list of numerical features. 
+  Users are allow to set multiple arguments regarding the setting of the correlation plot 
+  from color schemes, plot width, height and plot title.
 
-    Parameters
-    ----------
-    path: str
-      A location path for the data file
+  Parameters
+  ----------
+  data: pandas.core.frame.DataFrame
+    The input dataframe ojbect   
 
-    data: str
-      The data type for the data. 
-      It only supports CSV and Json at the moment.
+  features: list
+    A 1D list with names of numerical feature in str for correlation map plotting.
+    It should contain at least 2 features.
 
-    features: list
-      A 1D list of numerical feature names in string with the feature names for correlation map plotting.
-      It should contain at least 2 features.
+  color_scheme: str, optional
+    The color scheme
+    Other color schemes can be "blues", "tealblues", "oranges", "greenblue", "redpurple", etc.
+    Other proper color scheme reference can be found in https://vega.github.io/vega/docs/schemes/
 
-    color_theme: str, default='yellowgreenblue'
-      The color scheme
-      Other color schemes can be "blues", "tealblues", "oranges", "greenblue", "redpurple", etc.
-      Other proper color scheme reference can be found inhttps://vega.github.io/vega/docs/schemes/
+  plot_width: int, optional
+    The width of the plot
 
-    plot_width: int, default=400
-      The width of the plot
+  plot_height: int, optional
+    The heigh of the plot
 
-    plot_height: int, default=300
-      The heigh of the plot
+  title: str, optional
+    The title of the correlation map
 
-    title: str, default="Correlation Map"
-      The title of the correlation map
+  Returns
+  -------
+  altair.vegalite.v4.api.Chart
+    The altair correlation map plot
 
-    Returns
-    -------
-    altair.vegalite.v4.api.Chart
-      The altair correlation map plot
+  Examples
+  --------
+  >>> import pandas as pd
+  >>> import altair as alt
+  >>> import numpy as np
+  >>> from simpler_eda.corr_map import corr_map
+  >>> from vega_datasets import data
+  >>> df = data.cars()
+  >>> corr_map(df, ["age", "height", "income"])
+  """
 
-    Examples
-    --------
-    >>> import pandas as pd
-    >>> import altair as alt
-    >>> from corr_map import corr_map
-    >>> corr_map.corr_map("data/abc.csv", "csv", ["age", "height", "income"])
-    An altair.vegalite.v4.api.Chart object
-    An correlation map with the correlation among the age, height and income
-
-    """
-
-    return corr_map
+  return corr_map
