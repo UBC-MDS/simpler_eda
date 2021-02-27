@@ -10,7 +10,7 @@ def categorical_plot(
     color = None,
     title = None,
     font_size = 10,
-    color_scheme = "yellowgreenblue",
+    color_scheme = "tableau20",
     plot_height = 150,
     plot_width = 200,
     opacity = 0.6,
