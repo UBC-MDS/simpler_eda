@@ -18,7 +18,11 @@ def numerical_plot(
     y_transform=False,
 ):
     """
-    This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship between the two numerical features. Users can optionally change default arguments for plot-type, color, title, size of text, color-scheme, and toggle log transformation for the x and y axis.
+    This function takes in a data frame object, two numeric columns, 
+    and produces either a scatter or line plot to visualize the relationship 
+    between the two numerical features. Users can optionally change default 
+    arguments for plot-type, color, title, size of text, color-scheme, and 
+    toggle log transformation for the x and y axis.
 
     Parameters
     ----------
