@@ -36,7 +36,7 @@ def categorical_plot(
       Variable used to represent the y-axis.
     plot_type : str, optional
       Variable used to specify plot type. Options include "histogram" 
-      and "density". When "density" is selected, argument yval becomes obsolete.
+      and "density". When "density" is selected, the variable yval becomes obsolete.
     color : str, optional
       Variable used to set the color of the marks in the plot object.
     tilte : str, optional
