@@ -6,8 +6,8 @@ import numpy as np
 def corr_map(data, features, color_schme='yellowgreenblue', plot_width=400, plot_height=300, title="Correlation Map"):
   """
   Plot a correlation map with the given dataframe object and a list of numerical features. 
-  Users are allow to set multiple arguments regarding the setting of the correlation plot 
-  from color schemes, plot width, height and plot title.
+  Users are allowed to set multiple arguments regarding the setting of the correlation plot 
+  including color schemes, plot width, height, and plot title.
 
   Parameters
   ----------
@@ -34,7 +34,7 @@ def corr_map(data, features, color_schme='yellowgreenblue', plot_width=400, plot
 
   Returns
   -------
-  altair.vegalite.v4.api.Chart
+  `altair`
     The altair correlation map plot
 
   Examples
