@@ -11,18 +11,14 @@ def numerical_plot(
     color=None,
     title=None,
     font_size=10,
-    color_scheme="yellowgreenblue",
+    color_scheme="tableau20",
     plot_width=400,
     plot_height=300,
     x_transform=False,
     y_transform=False,
 ):
     """
-    This function takes in a data frame object, two numeric columns,
-    and produces either a scatter or line plot to visualize the
-    relationship between the two features. User can optionally change
-    default arguments for plot-type, color, title, size of text,
-    color-scheme, and toggle log transformation for the x and y axis.
+    This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship between the two numerical features. Users can optionally change default arguments for plot-type, color, title, size of text, color-scheme, and toggle log transformation for the x and y axis.
 
     Parameters
     ----------
@@ -39,7 +35,7 @@ def numerical_plot(
       Variable used to represent the graphical relationship between xval and yval, options are scatter or line plot.
 
     color : str, optional
-      Variable used to group the data ponts in different collors
+      Variable used to group the data ponts in different colors.
 
     tilte : str, optional
       Variable used to set the title of the plot.
@@ -49,14 +45,14 @@ def numerical_plot(
 
     color_scheme: str, optional
       The color scheme used for the plot.
-      Other color schemes can be "blues", "tealblues", "oranges", "greenblue", "redpurple", etc.
+      Other color schemes can be "accent", "category10", "category20", "category20b", "dark2", etc.
       Other proper color scheme reference can be found in https://vega.github.io/vega/docs/schemes/
 
     plot_width: int, optional
-      The width of the plot
+      The width of the plot.
 
     plot_height: int, optional
-      The heigh of the plot
+      The height of the plot.
 
     x_transform : bool, optional
       Determines whether a log transformation occurs on the x-axis.
