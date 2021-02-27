@@ -23,8 +23,7 @@ def categorical_plot(
     distribution of the feature. User can also choose to plot density
     graph of the feature by specifing in plot_type. 
     The function also offers customization on color, plot title, 
-    font size, color-scheme, plot size, opacity level and facet 
-    factor.
+    font size, color-scheme, plot size and other common configurations.
 
     Parameters
     ----------
