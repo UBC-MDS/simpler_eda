@@ -15,17 +15,17 @@ $ pip install -i https://test.pypi.org/simple/ simpler_eda
 
 ## Functions
 
-This package contains three functions, each that accepts a pandas `DataFrame` for EDA. No specific data set is required for the functions to work. Each functions will have it's own required and optional arguements to configure the properties of the plot. 
+This package contains three functions, each that accepts a pandas `DataFrame` for EDA. The EDA functions can be used with a dataset with numerical and categorical features. Each functions will have it's own required and optional arguments to configure the properties of the plot. 
 
-1. `correlation_eda_plot:` This function takes in a data frame object, a list of numerical features to be correlated (instead of all features) and outputs a correlation plot object. User can optionally change default arguements for color/fill, title, size of text and color-scheme.
+1. `correlation_eda_plot:`  Plot a correlation map with the given dataframe object and a list of numerical features. Users are allow to set multiple arguments regarding the setting of the correlation plot from color schemes, plot width, height and plot title.
 
-2. `numerical_eda_plot:` This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship of the two features. User can optionally change default arguements for plot-type, color/fill, title, size of text, color-scheme and apply logarithm scaling on the x and y axis.
+2. `numerical_eda_plot:` This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship between the two features. User can optionally change default arguments for plot-type, color, title, size of text, color-scheme, and toggle log transformation for the x and y axis.
 
-3. `categorical_eda_plot:` This function takes in a data frame object, a numerical and a categorical column and produces either a jitter, violin, barchar and boxplot (two categoricals) for comparison. User can optionally change default arguements for plot-type, color/fill, title, size of text and color-scheme.
+3. `categorical_eda_plot:`  This function takes in a data frame object and one categorical feature, to produce a histogram plot that visualizes the distribution of the feature. User can also choose to plot density graph of the feature by specifing in plot_type. The function also offers customization on color, plot title, font size, color-scheme, plot size, opacity level and facet factor.
 
 ## How the simpler_eda package fits into the Python ecosystem
 
-The simpler_eda package improves upon existing functions in the Altair packages library. Altair already includes many useful functions to visualize relationship between numerical and categorical features with the use of grammar of graphics syntax. But often this is quite cumbersome and prone to errors, simpler_eda package provides convenience by allowing user to perform EDA with a single line of code. There are a number of packages that already provides similar functionality in the Python Ecosystem, but most of them are not easily customizable. Some examples of the packages are [pandas profiling](https://github.com/pandas-profiling/pandas-profiling), [DataPrep](https://docs.dataprep.ai/index.html), [SweetViz](https://pypi.org/project/sweetviz/) and [Holoviwes](https://github.com/holoviz/holoviews).
+The simpler_eda package improves upon existing functions in the Altair packages library. Altair already includes many useful functions to visualize the relationship between numerical and categorical features with the use of grammar of graphics syntax. But often this is quite cumbersome and prone to errors, simpler_eda package provides convenience by allowing users to perform EDA with a single line of code. There are a number of packages that already provide similar functionality in the Python Ecosystem, such as [pandas profiling](https://github.com/pandas-profiling/pandas-profiling), [DataPrep](https://docs.dataprep.ai/index.html), [SweetViz](https://pypi.org/project/sweetviz/) and [Holoviwes](https://github.com/holoviz/holoviews). However, most of them are not easily customizable. Our simpler_eda package allows flexibility from plot types to plot titles.
 
 ## Dependencies
 
