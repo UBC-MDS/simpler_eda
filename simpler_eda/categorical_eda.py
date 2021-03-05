@@ -5,7 +5,6 @@ import pandas as pd
 def categorical_plot(
     data,
     xval = None,
-    yval = "count()",
     plot_type = "histogram",
     color = None,
     title = None,
@@ -16,7 +15,7 @@ def categorical_plot(
     opacity = 1,
     facet_factor = None,
     facet_col = None
-)
+):
     """
     This function takes in a data frame object and one categorical
     feature, to produce a histogram plot that visualizes the
@@ -75,30 +74,13 @@ def categorical_plot(
                         plot_width = 200
                         )
     """
-
-
-    def categorical_plot(
-    data,
-    xval = None,
-    yval = "count()",
-    plot_type = "histogram",
-    color = None,
-    title = None,
-    font_size = 10,
-    color_scheme = "tableau20",
-    plot_height = 150,
-    plot_width = 200,
-    opacity = 1,
-    facet_factor = None,
-    facet_col = None
-):
     #Checking for valid inputs:
     if not isinstance(data, pd.DataFrame):
-        raise Exception("the input data is not a dataframe.")
-#     if facet_factor is None & facet_col is not None:
-#         raise Exception("facet_factor must be provided along with facet_col.")
-#     if facet_factor is not None & facet_col is None:
-#         raise Exception("Specify facet_col for facetting the plot")
+        raise Exception("the input data has to be a dataframe.")
+    if facet_factor is None and facet_col is not None:
+        raise Exception("facet_factor must be provided along with facet_col.")
+    if facet_factor is not None and facet_col is None:
+        raise Exception("Specify facet_col for facetting the plot")
     if plot_type not in ["histogram", "density"]:
         raise Exception("plot_type must be either 'histogram' or 'density'")
     if opacity <= 0 or opacity >1:
@@ -109,7 +91,7 @@ def categorical_plot(
         if plot_type == "histogram":
             categorical_plot = alt.Chart(data=data, title=title).mark_bar().encode(
                     x = alt.X(xval),
-                    y = yval,
+                    y = "count()",
                     color = alt.Color(color, scale=alt.Scale(scheme=color_scheme))
                 ).properties(width=plot_width, height=plot_height
                 ).configure_title(fontSize = font_size
@@ -137,7 +119,7 @@ def categorical_plot(
         if plot_type == "histogram":
             categorical_plot = alt.Chart(data=data).mark_bar().encode(
                     x = alt.X(xval),
-                    y = yval,
+                    y = "count()",
                     color = alt.Color(color, scale=alt.Scale(scheme=color_scheme))
                 ).properties(width=plot_width, height=plot_height
                 ).facet(facet_factor, columns = facet_col, title=title
