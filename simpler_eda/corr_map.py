@@ -52,26 +52,15 @@ def corr_map(data, features, corr_method='pearson', color_scheme='blueorange', p
   >>> df = data.cars()
   >>> corr_map(df, ["Horsepower", "Displacement", "Cylinders", "Acceleration"])
   """
-  #Checking for valid inputs:
-  if not isinstance(data, pd.DataFrame):
-    raise Exception("the input data is not a panda dataframe.")
-  if not isinstance(features, list):
-    raise Exception("the features for  is not a list")
-  if features not in list(data.columns):
-  # if set(features)<=set(list(data.columns)): both not working not sure the reason..ss
-    raise Exception("The features or one of the feature is not available the dataframe provided.")
-  if not all(isinstance(f, str) for f in features):
-    raise Exception("All the entries in the feature list should be a string")
-  if corr_method not in ['pearson', 'kendall', 'spearman']:
-    raise Exception("The correlation method should be 'pearson', 'kendall',  or'spearman'")
-  if not isinstance(color_scheme, str):
-    raise Exception("The color scheme should be given as a string")
-  if not isinstance(plot_width, int):
-    raise Exception("The plot_width should be given as an integer")
-  if not isinstance(plot_height, int):
-    raise Exception("The plot_height should be given as an integer")
-  if not isinstance(title, str):
-    raise Exception("The title should be given as a string")
+  # Checking for valid inputs:
+  assert isinstance(data, pd.DataFrame), "the input data is not a panda dataframe."
+  assert isinstance(features, list), "the features for  is not a list"
+  assert all(isinstance(f, str) for f in features), "All the entries in the feature list should be a string"
+  assert corr_method in ['pearson', 'kendall', 'spearman'], "The correlation method should be 'pearson', 'kendall',  or'spearman'"
+  assert isinstance(color_scheme, str), "The color scheme should be given as a string"
+  assert isinstance(plot_width, int), "The plot_width should be given as an integer"
+  assert isinstance(plot_height, int), "The plot_height should be given as an integer"
+  assert isinstance(title, str), "The title should be given as a string"
 
   selected_cols = data[features]
 
