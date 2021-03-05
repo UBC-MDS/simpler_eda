@@ -4,7 +4,7 @@ import pandas as pd
 
 def categorical_plot(
     data,
-    xval = None,
+    xval,
     plot_type = "histogram",
     color = None,
     title = None,
@@ -30,8 +30,6 @@ def categorical_plot(
        Input dataframe object.
     xval : str
       Variable used to represent the x-axis.
-    yval : str, optional
-      Variable used to represent the y-axis.
     plot_type : str, optional
       Variable used to specify plot type. Options include "histogram" 
       and "density". When "density" is selected, the variable yval becomes obsolete.
@@ -49,8 +47,10 @@ def categorical_plot(
       Variable used to specify plot width
     opacity : float, optional
       Variable used to specify density fill opacity for density plot
-    facet : str, optional
+    facet_factor : str, optional
       Variable used to specify facet factor
+    facet_col : int, optional
+      Variable used to specify number of facet columns
 
     Returns
     -------
@@ -67,7 +67,6 @@ def categorical_plot(
     >>> cars = data.cars()
     >>> categorical_plot(data = cars, 
                         xval = "Origin", 
-                        yval = "count()",
                         color = "Horsepower",
                         title = "Histogram of Origin in Different Levels of Horsepower",
                         plot_height = 100,
