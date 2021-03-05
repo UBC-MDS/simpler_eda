@@ -2,13 +2,13 @@ import pandas as pd
 import altair as alt
 import numpy as np
 from vega_datasets import data
-# need to have scipy  as depencies to allow differen types of corr_method
+# need to have scipy as depencies to allow differen types of corr_method
 
 def corr_map(data, features, corr_method='pearson', color_scheme='blueorange', plot_width=450, plot_height=450, title="Correlation Map"):
   """
   Plot a correlation map with the given dataframe object and a list of numerical features. 
   Users are allowed to set multiple arguments regarding the setting of the correlation plot 
-  including color schemes, plot width, height, and plot title.
+  including method to calculate correlation, color schemes, plot width, height, and plot title.
 
   Parameters
   ----------
@@ -50,8 +50,28 @@ def corr_map(data, features, corr_method='pearson', color_scheme='blueorange', p
   >>> from simpler_eda.corr_map import corr_map
   >>> from vega_datasets import data
   >>> df = data.cars()
-  >>> corr_map(df, ["age", "height", "income"])
+  >>> corr_map(df, ["Horsepower", "Displacement", "Cylinders", "Acceleration"])
   """
+  #Checking for valid inputs:
+  if not isinstance(data, pd.DataFrame):
+    raise Exception("the input data is not a panda dataframe.")
+  if not isinstance(features, list):
+    raise Exception("the features for  is not a list")
+  if features not in list(data.columns):
+  # if set(features)<=set(list(data.columns)): both not working not sure the reason..ss
+    raise Exception("The features or one of the feature is not available the dataframe provided.")
+  if not all(isinstance(f, str) for f in features):
+    raise Exception("All the entries in the feature list should be a string")
+  if corr_method not in ['pearson', 'kendall', 'spearman']:
+    raise Exception("The correlation method should be 'pearson', 'kendall',  or'spearman'")
+  if not isinstance(color_scheme, str):
+    raise Exception("The color scheme should be given as a string")
+  if not isinstance(plot_width, int):
+    raise Exception("The plot_width should be given as an integer")
+  if not isinstance(plot_height, int):
+    raise Exception("The plot_height should be given as an integer")
+  if not isinstance(title, str):
+    raise Exception("The title should be given as a string")
 
   selected_cols = data[features]
 
