@@ -54,9 +54,11 @@ def corr_map(data, features, corr_method='pearson', color_scheme='blueorange', p
   """
   # Checking for valid inputs:
   assert isinstance(data, pd.DataFrame), "The input data is not a panda dataframe"
-  assert isinstance(features, list), "The features for  is not a list"
+  assert isinstance(features, list), "The input for feature should be a list"
   assert len(features)>= 2, "There should be at least 2 features in the list"
   assert all(isinstance(f, str) for f in features), "All the entries in the feature list should be a string"
+  ## add a check check all given names are numeric columns
+  assert all(pd.api.types.is_numeric_dtype(data[f]) for f in features), "All features in the list should be numeric"
   assert corr_method in ['pearson', 'kendall', 'spearman'], "The correlation method should be 'pearson', 'kendall',  or'spearman'"
   assert isinstance(color_scheme, str), "The color scheme should be given as a string"
   assert isinstance(plot_width, int), "The plot_width should be given as an integer"

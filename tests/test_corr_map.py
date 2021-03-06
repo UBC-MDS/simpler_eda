@@ -10,7 +10,12 @@ df = data.cars()
 
 def test_input_type():
     """
-    Test for error if input is of a wrong type
+    Tests for exceptions handling.
+
+    Returns
+    -------
+    None
+        All test should pass and no asserts error should be displayed. 
     """
 
     try:
@@ -23,7 +28,7 @@ def test_input_type():
         corr_map(df, "ab")
 
     except Exception as err:
-        assert str(err) == "The features for  is not a list"
+        assert str(err) == "The input for feature should be a list"
 
     try:
         corr_map(df, ["Horsepower"])
@@ -32,10 +37,17 @@ def test_input_type():
         assert str(err) == "There should be at least 2 features in the list"
 
     try:
-        corr_map(df, ["Horsepower", 123, 456])
+        corr_map(df, ["Horsepower", [123, 456]])
         
     except Exception as err:
         assert str(err) == "All the entries in the feature list should be a string"
+
+    # added a check to ensure the input list of features are all numeric
+    try:
+        corr_map(df, ["Horsepower", "Name"])
+        
+    except Exception as err:
+        assert str(err) == "All features in the list should be numeric"  
 
     try:
         corr_map(df, ["Horsepower", "Displacement", "Cylinders", "Acceleration"], corr_method="kvb")
@@ -85,7 +97,7 @@ def test_corr_map():
     Returns
     --------
     None
-        The test should all pass and no asserts should be displayed.s
+        All test should pass and no asserts should be displayed.s
     """
     assert str(type(out)) == "<class 'altair.vegalite.v4.api.Chart'>", "The function should retrun an altair plot" 
     assert out.encoding.x.shorthand == "level_0", 'The level_0 should be mapped to the x axis'
