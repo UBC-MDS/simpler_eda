@@ -187,7 +187,7 @@ def numerical_eda(
             )
 
     # Code for the line plot
-    elif plot_type == "line":
+    else:
         if color in df.columns:
             numerical_eda = (
                 alt.Chart(df, title=alt.TitleParams(text=title))
