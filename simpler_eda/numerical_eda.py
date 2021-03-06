@@ -7,15 +7,12 @@ import pytest
 from pandas.api.types import is_numeric_dtype
 
 
-cars = data.cars()
-
-
 def numerical_eda(
     data,
-    xval=None,
-    yval=None,
+    xval,
+    yval,
+    color,
     plot_type="scatter",
-    color="red",
     title=None,
     font_size=10,
     color_scheme="tableau20",
@@ -38,10 +35,10 @@ def numerical_eda(
       Variable used to represent the x-axis.
     yval : str
       Variable used to represent the y-axis.
-    plot_type : str
+    color : str
+      Variable used to group the data ponts in different colors based on a variable in the dataframe.
+    plot_type : str, optional
       Variable used to represent the graphical relationship between xval and yval, options are scatter or line plot.
-    color : str, optional
-      Variable used to group the data ponts in different colors.
     tilte : str, optional
       Variable used to set the title of the plot.
     font_size  : int, optional
@@ -76,16 +73,17 @@ def numerical_eda(
     """
     # Defensive programming: Check if user provides valid inputs
 
-    # Ensure title variable is specified by the user
-    assert title is not None, "Variable title needs to be specified."
+    # If the title is not specified by the user, default title is provided
+    if title is None:
+        title = f"{xval} vs {yval} {plot_type} plot"
 
     error_one = "TypeError: Data must be entered as a pandas dataframe."
     assert isinstance(data, pd.DataFrame), error_one
 
-    error_two = "Wrong type! X-axis variable must be entered as a String."
+    error_two = "TypeError: X-axis variable must be entered as a String."
     assert isinstance(xval, str), error_two
 
-    error_three = "Wrong type! Y-axis variable must be entered as a String."
+    error_three = "TypeError: Y-axis variable must be entered as a String."
     assert isinstance(yval, str), error_three
 
     error_four = "TypeError: x_transform must be of type boolean."
@@ -94,7 +92,7 @@ def numerical_eda(
     error_five = "TypeError: y_transform must be of type boolean."
     assert isinstance(y_transform, bool), error_five
 
-    error_six = "TypeError: plot_type must be either 'scatter' or 'line'."
+    error_six = "InputValueError: plot_type must be either 'scatter' or 'line'."
     assert plot_type in ["scatter", "line"], error_six
 
     error_seven = "TypeError: plot_width must be an integer."
@@ -106,14 +104,14 @@ def numerical_eda(
     error_nine = "TypeError: font_size must be a positive integer."
     assert isinstance(font_size, int), error_nine
 
-    error_ten = "Wrong type!: color must be a string."
+    error_ten = "TypeError: color must be a string."
     assert isinstance(color, str), error_ten
 
-    error_eleven = "Wrong type!: title must be a string."
-    assert isinstance(title, str), error_eleven
+    error_eleven = "TypeError: color_scheme must be a string."
+    assert isinstance(color_scheme, str), error_eleven
 
-    error_twelve = "Wrong type!: color_scheme must be a string."
-    assert isinstance(color_scheme, str), error_twelve
+    error_twelve = "TypeError: title must be a string."
+    assert isinstance(title, str), error_twelve
 
     # create a copy of the dataframe so that original dataframe
     #  remains unchanged
@@ -123,6 +121,8 @@ def numerical_eda(
     assert xval in df.columns, "Variable xval not found in input dataframe."
 
     assert yval in df.columns, "Variable yval not found in input dataframe."
+
+    assert color in df.columns, "Variable color not found in input dataframe."
 
     # Ensure variable is numeric
     error_msg_x = "Your x-variable needs to be numeric."
@@ -160,60 +160,31 @@ def numerical_eda(
     # Plotting code for the function, code for either plot_type in ['line', 'scatter']
     # Code for the scatter plot
     if plot_type == "scatter":
-        if color in df.columns:
-            numerical_eda = (
-                alt.Chart(df, title=alt.TitleParams(text=title))
-                .mark_circle(size=30, opacity=0.8)
-                .encode(
-                    alt.X(xval, scale=x_scale),
-                    alt.Y(yval, scale=y_scale),
-                    alt.Color(color, scale=alt.Scale(scheme=color_scheme)),
-                )
-                .properties(width=plot_width, height=plot_height)
-            ).configure_axis(
-                titleFontSize=font_size, labelFontSize=font_size, labelAngle=0
+        numerical_eda = (
+            alt.Chart(df, title=alt.TitleParams(text=title))
+            .mark_circle(size=10, opacity=0.8)
+            .encode(
+                alt.X(xval, scale=x_scale),
+                alt.Y(yval, scale=y_scale),
+                alt.Color(color, scale=alt.Scale(scheme=color_scheme)),
             )
-        else:
-            numerical_eda = (
-                alt.Chart(df, title=alt.TitleParams(text=title))
-                .mark_circle(size=30, opacity=0.8, color=color)
-                .encode(
-                    alt.X(xval, scale=x_scale),
-                    alt.Y(yval, scale=y_scale),
-                )
-                .properties(width=plot_width, height=plot_height)
-            ).configure_axis(
-                titleFontSize=font_size, labelFontSize=font_size, labelAngle=0
-            )
+            .properties(width=plot_width, height=plot_height)
+        ).configure_axis(titleFontSize=font_size, labelFontSize=font_size, labelAngle=0)
 
     # Code for the line plot
     else:
-        if color in df.columns:
-            numerical_eda = (
-                alt.Chart(df, title=alt.TitleParams(text=title))
-                .mark_line(size=1, opacity=0.8)
-                .encode(
-                    alt.X(xval, scale=x_scale),
-                    alt.Y(yval, scale=y_scale),
-                    alt.Color(color, scale=alt.Scale(scheme=color_scheme)),
-                )
-                .properties(width=plot_width, height=plot_height)
-                .configure_axis(
-                    titleFontSize=font_size, labelFontSize=font_size, labelAngle=0
-                )
+        numerical_eda = (
+            alt.Chart(df, title=alt.TitleParams(text=title))
+            .mark_line(size=1, opacity=0.8)
+            .encode(
+                alt.X(xval, scale=x_scale),
+                alt.Y(yval, scale=y_scale),
+                alt.Color(color, scale=alt.Scale(scheme=color_scheme)),
             )
-        else:
-            numerical_eda = (
-                alt.Chart(df, title=alt.TitleParams(text=title))
-                .mark_line(size=1, opacity=0.8, color=color)
-                .encode(
-                    alt.X(xval, scale=x_scale),
-                    alt.Y(yval, scale=y_scale),
-                )
-                .properties(width=plot_width, height=plot_height)
-                .configure_axis(
-                    titleFontSize=font_size, labelFontSize=font_size, labelAngle=0
-                )
+            .properties(width=plot_width, height=plot_height)
+            .configure_axis(
+                titleFontSize=font_size, labelFontSize=font_size, labelAngle=0
             )
+        )
 
     return numerical_eda

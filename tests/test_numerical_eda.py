@@ -12,7 +12,11 @@ cars = data.cars()
 @pytest.fixture
 def test_negative():
     negative_data = pd.DataFrame(
-        {"x": [1, 2, 6, 7, 83, -1], "y": [1, 25, 6, -77, 2, 3]}
+        {
+            "x": [1, 2, 6, 7, 83, -1],
+            "y": [1, 25, 6, -77, 2, 3],
+            "Origin": [10, 11, 12, 12, 11, 19],
+        }
     )
     return negative_data
 
@@ -29,40 +33,42 @@ def test_numerical_eda():
         The test should pass and no asserts should be displayed.
     """
 
-    # Unit test for a scatter plot with no transformations and using mark color
+    # Unit test for a scatter plot with no transformations and grouping by color
     plot1 = numerical_eda(
         cars,
         xval="Horsepower",
         yval="Acceleration",
-        color="red",
-        title="Scatter",
+        color="Origin",
         plot_type="scatter",
         font_size=10,
-        color_scheme="purpleorange",
+        color_scheme="tableau20",
         plot_height=100,
         plot_width=200,
     )
-    plot1_dict = plot1.to_dict()
 
     assert (
         str(type(plot1)) == "<class 'altair.vegalite.v4.api.Chart'>"
     ), "The function should retrun an altair plot"
     assert (
-        plot1.encoding.x.field == "Horsepower"
+        plot1.encoding.x.shorthand == "Horsepower"
     ), "Horsepower should be mapped to the x axis"
     assert (
-        plot1.encoding.y.field == "Acceleration"
+        plot1.encoding.y.shorthand == "Acceleration"
     ), "Acceleration should be mapped to the y axis"
     assert plot1.mark["type"] in ["circle"], "the plot type (mark) should be a point"
-    assert plot1.title.text == "Scatter", "The plot title should be Scatter"
-    assert plot1.mark.color == "red", "The color of the mark should be red"
+    assert (
+        plot1.title.text == "Horsepower vs Acceleration scatter plot"
+    ), "The plot title should be Horsepower vs Acceleration scatter plot"
+    assert (
+        plot1.encoding.color.shorthand == "Origin"
+    ), "The color of the mark should be based on Origin"
 
-    # Unit test for a line plot with no transformations and using mark color
+    # Unit test for a line plot with no transformations and grouping by color
     plot2 = numerical_eda(
         cars,
         xval="Acceleration",
         yval="Displacement",
-        color="blue",
+        color="Origin",
         title="Line",
         plot_type="line",
         font_size=10,
@@ -70,20 +76,21 @@ def test_numerical_eda():
         plot_height=100,
         plot_width=200,
     )
-    plot2_dict = plot2.to_dict()
 
     assert (
         str(type(plot2)) == "<class 'altair.vegalite.v4.api.Chart'>"
     ), "The function should retrun an altair plot"
     assert (
-        plot2.encoding.x.field == "Acceleration"
+        plot2.encoding.x.shorthand == "Acceleration"
     ), "Acceleration should be mapped to the x axis"
     assert (
-        plot2.encoding.y.field == "Displacement"
+        plot2.encoding.y.shorthand == "Displacement"
     ), "Displacement should be mapped to the y axis"
     assert plot2.mark["type"] in ["line"], "the plot type (mark) should be a line"
     assert plot2.title.text == "Line", "The plot title should be Line"
-    assert plot2.mark.color == "blue", "The color of the mark should be blue"
+    assert (
+        plot2.encoding.color.shorthand == "Origin"
+    ), "The color of the mark should be based on Origin"
 
     # Unit test for a scatter plot with transformations and using color with categorical
     plot3 = numerical_eda(
@@ -94,60 +101,27 @@ def test_numerical_eda():
         title="Scatterplot",
         plot_type="scatter",
         font_size=10,
-        color_scheme="purpleorange",
+        color_scheme="tableau20",
         plot_height=100,
         plot_width=200,
         x_transform=True,
         y_transform=True,
     )
-    plot3_dict = plot3.to_dict()
 
     assert (
         str(type(plot3)) == "<class 'altair.vegalite.v4.api.Chart'>"
     ), "The function should retrun an altair plot"
     assert (
-        plot3.encoding.x.field == "Displacement"
+        plot3.encoding.x.shorthand == "Displacement"
     ), "Disolacement should be mapped to the x axis"
     assert (
-        plot3.encoding.y.field == "Acceleration"
+        plot3.encoding.y.shorthand == "Acceleration"
     ), "Acceleration should be mapped to the y axis"
     assert plot3.mark["type"] in ["circle"], "the plot type (mark) should be a point"
     assert plot3.title.text == "Scatterplot", "The plot title should be Scatterplot"
     assert (
-        plot3.encoding.color.field == "Origin"
+        plot3.encoding.color.shorthand == "Origin"
     ), "The color of the groupings should be origin"
-
-    # Unit test for a line plot with transformations and using color with numerical variable
-    plot4 = numerical_eda(
-        cars,
-        xval="Displacement",
-        yval="Acceleration",
-        color="Origin",
-        title="Lineplot",
-        plot_type="line",
-        font_size=10,
-        color_scheme="purpleorange",
-        plot_height=100,
-        plot_width=200,
-        x_transform=True,
-        y_transform=True,
-    )
-    plot4_dict = plot4.to_dict()
-
-    assert (
-        str(type(plot4)) == "<class 'altair.vegalite.v4.api.Chart'>"
-    ), "The function should retrun an altair plot"
-    assert (
-        plot4.encoding.x.field == "Displacement"
-    ), "Displacement should be mapped to the x axis"
-    assert (
-        plot4.encoding.y.field == "Acceleration"
-    ), "Acceleration should be mapped to the y axis"
-    assert plot4.mark["type"] in ["line"], "the plot type (mark) should be a line"
-    assert plot4.title.text == "Lineplot", "The plot title should be Scatterplot"
-    assert (
-        plot4.encoding.color.field == "Origin"
-    ), "The color of the groupings should be Origin"
 
 
 def test_input_type():
@@ -174,7 +148,7 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
         )
@@ -191,12 +165,12 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
         )
     except Exception as e:
-        assert str(e) == "Wrong type! X-axis variable must be entered as a String."
+        assert str(e) == "TypeError: X-axis variable must be entered as a String."
 
     # Wrong input for yval, must be string
     try:
@@ -208,12 +182,12 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
         )
     except Exception as e:
-        assert str(e) == "Wrong type! Y-axis variable must be entered as a String."
+        assert str(e) == "TypeError: Y-axis variable must be entered as a String."
 
     # Wrong input type for x_transform, must be boolean
     try:
@@ -225,7 +199,7 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
             x_transform="False",
@@ -243,7 +217,7 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
             y_transform="False",
@@ -261,7 +235,7 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width="Horse",
             x_transform=False,
@@ -279,7 +253,7 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height="200",
             plot_width=100,
             x_transform=False,
@@ -297,7 +271,7 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size="10",
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=100,
             x_transform=False,
@@ -315,13 +289,13 @@ def test_input_type():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=100,
             x_transform=False,
         )
     except Exception as e:
-        assert str(e) == "Wrong type!: color must be a string."
+        assert str(e) == "TypeError: color must be a string."
 
     # Wrong input type for title, must be string
     try:
@@ -329,17 +303,17 @@ def test_input_type():
             cars,
             xval="Horsepower",
             yval="Displacement",
-            color="red",
+            color="Origin",
             title=list("deep"),
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=100,
             x_transform=False,
         )
     except Exception as e:
-        assert str(e) == "Wrong type!: title must be a string."
+        assert str(e) == "TypeError: title must be a string."
 
     # Wrong input type for color_scheme, must be string
     try:
@@ -347,17 +321,17 @@ def test_input_type():
             cars,
             xval="Horsepower",
             yval="Displacement",
-            color="red",
+            color="Origin",
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme=list("purpleorange"),
+            color_scheme=list("tableau20"),
             plot_height=200,
             plot_width=100,
             x_transform=False,
         )
     except Exception as e:
-        assert str(e) == "Wrong type!: color_scheme must be a string."
+        assert str(e) == "TypeError: color_scheme must be a string."
 
 
 def test_input_value():
@@ -384,7 +358,7 @@ def test_input_value():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
         )
@@ -401,29 +375,82 @@ def test_input_value():
             title="Plot",
             plot_type="line",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
         )
     except Exception as e:
         assert str(e) == "Variable yval not found in input dataframe."
 
-    # Test for whether Title is not  specified
+    # Test for whether color is in dataframe
+    try:
+        numerical_eda(
+            cars,
+            xval="Horsepower",
+            yval="Displacement",
+            color="Orig",
+            title="Deepak",
+            plot_type="line",
+            font_size=10,
+            color_scheme="tableau20",
+            plot_height=200,
+            plot_width=400,
+        )
+    except Exception as e:
+        assert str(e) == "Variable color not found in input dataframe."
+
+    # Test for whether xval is  numeric
+    try:
+        numerical_eda(
+            cars,
+            xval="Origin",
+            yval="Displacement",
+            color="Origin",
+            title="Deepak",
+            plot_type="line",
+            font_size=10,
+            color_scheme="tableau20",
+            plot_height=200,
+            plot_width=400,
+        )
+    except Exception as e:
+        assert str(e) == "Your x-variable needs to be numeric."
+
+    # Test for whether yval is  numeric
+    try:
+        numerical_eda(
+            cars,
+            xval="Horsepower",
+            yval="Origin",
+            color="Origin",
+            title="Deepak",
+            plot_type="line",
+            font_size=10,
+            color_scheme="tableau20",
+            plot_height=200,
+            plot_width=400,
+        )
+    except Exception as e:
+        assert str(e) == "Your y-variable needs to be numeric."
+
+    # Test for whether plot_type is "scatter" or "line"
     try:
         numerical_eda(
             cars,
             xval="Horsepower",
             yval="Displacement",
             color="Origin",
-            title=None,
-            plot_type="line",
+            title="Deepak",
+            plot_type="point",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
         )
     except Exception as e:
-        assert str(e) == "Variable title needs to be specified."
+        assert (
+            str(e) == "InputValueError: plot_type must be either 'scatter' or 'line'."
+        )
 
 
 def test_negX(test_negative):
@@ -445,11 +472,11 @@ def test_negX(test_negative):
             test_negative,
             xval="x",
             yval="y",
-            color="red",
+            color="Origin",
             title="Plot",
             plot_type="scatter",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
             x_transform=True,
@@ -476,11 +503,11 @@ def test_negY(test_negative):
             test_negative,
             xval="x",
             yval="y",
-            color="red",
+            color="Origin",
             title="Plot",
             plot_type="scatter",
             font_size=10,
-            color_scheme="purpleorange",
+            color_scheme="tableau20",
             plot_height=200,
             plot_width=400,
             x_transform=False,
