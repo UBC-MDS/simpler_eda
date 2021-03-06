@@ -1,4 +1,4 @@
-# A package for Simpler Explanatory Data Analysis (simpler_eda)
+# simpler_eda
 
 ![](https://github.com/nichowu/simpler_eda/workflows/build/badge.svg) [![codecov](https://codecov.io/gh/nichowu/simpler_eda/branch/main/graph/badge.svg)](https://codecov.io/gh/nichowu/simpler_eda) ![Release](https://github.com/nichowu/simpler_eda/workflows/Release/badge.svg) [![Documentation Status](https://readthedocs.org/projects/simpler_eda/badge/?version=latest)](https://simpler_eda.readthedocs.io/en/latest/?badge=latest)
 
