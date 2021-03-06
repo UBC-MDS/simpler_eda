@@ -2,7 +2,7 @@ import altair as alt
 import numpy as np
 import pandas as pd
 
-def categorical_plot(
+def categorical_eda(
     data,
     xval,
     plot_type = "histogram",
@@ -84,8 +84,12 @@ def categorical_plot(
         raise Exception("plot_type must be either 'histogram' or 'density'")
     if opacity <= 0 or opacity >1:
         raise Exception("opacity must be in range (0, 1)")
+    if xval not in data.columns:
+        raise Exception("xval must be a feature in the input dataframe")
+    if color not in data.columns:
+        raise Exception("color must be a feature in the input dataframe")
 
-        
+    
     if facet_factor == None:
         if plot_type == "histogram":
             categorical_plot = alt.Chart(data=data, title=title).mark_bar().encode(
@@ -99,7 +103,7 @@ def categorical_plot(
                     titleFontSize=font_size
                 )
         
-        elif plot_type == "density":
+        else:
             categorical_plot = alt.Chart(data=data, title=title).transform_density(
                     xval,
                     groupby=[color],
@@ -128,7 +132,7 @@ def categorical_plot(
                     titleFontSize=font_size
                 )
         
-        elif plot_type == "density":
+        else:
             categorical_plot = alt.Chart(data=data).transform_density(
                     xval,
                     groupby=[color],
