@@ -17,11 +17,11 @@ $ pip install -i https://test.pypi.org/simple/ simpler_eda
 
 This package contains three functions, each that accepts a pandas `DataFrame` for EDA. The EDA functions can be used with a dataset with numerical and categorical features. Each functions will have it's own required and optional arguments to configure the properties of the plot. 
 
-1. `correlation_eda_plot:`  Plot a correlation map with the given dataframe object and a list of numerical features. Users are allowed to set multiple arguments regarding the setting of the correlation plot including color schemes, plot width, height, and plot title.
+1. `correlation_eda:`  Plot a correlation map with the given dataframe object and a list of numerical features. Users are allowed to set multiple arguments regarding the setting of the correlation plot including color schemes, plot width, height, and plot title.
 
-2. `numerical_eda_plot:` This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship between the two numerical features. Users can optionally change default arguments for plot-type, color, title, size of text, color-scheme, and toggle log transformation for the x and y axis.
+2. `numerical_eda:` This function takes in a data frame object, two numeric columns, and produces either a scatter or line plot to visualize the relationship between the two numerical features. Users can optionally change default arguments for plot-type, color, title, size of text, color-scheme, and toggle log transformation for the x and y axis.
 
-3. `categorical_eda_plot:`  This function takes in a data frame object and one categorical feature, to produce a histogram plot that visualizes the distribution of the feature. Users can also choose to plot the density graph of the feature by specifying in plot_type. The function also offers customization on color, plot title, font size, color-scheme, plot size, opacity level, and facet factor.
+3. `categorical_eda:`  This function takes in a data frame object and one categorical feature, to produce a histogram plot that visualizes the distribution of the feature. Users can also choose to plot the density graph of the feature by specifying in plot_type. The function also offers customization on color, plot title, font size, color-scheme, plot size, opacity level, and facet factor.
 
 ## How the simpler_eda package fits into the Python ecosystem
 
