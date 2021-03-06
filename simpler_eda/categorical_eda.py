@@ -86,7 +86,7 @@ def categorical_eda(
         raise Exception("opacity must be in range (0, 1)")
     if xval not in data.columns:
         raise Exception("xval must be a feature in the input dataframe")
-    if color not in data.columns:
+    if color is not None and color not in data.columns:
         raise Exception("color must be a feature in the input dataframe")
 
     
