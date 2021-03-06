@@ -276,7 +276,7 @@ pandas = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "18374446737e5cfb411727ac63bfb95f82186901a10a86d030b73ab5e11ddec7"
+content-hash = "84f139a64efb91b4576bb21123bacc6cbd40913b3079f7f7302ddf836f98d465"
 
 [metadata.files]
 altair = [
