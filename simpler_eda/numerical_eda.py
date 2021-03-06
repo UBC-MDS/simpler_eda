@@ -24,7 +24,56 @@ def numerical_eda(
     x_transform=False,
     y_transform=False,
 ):
-
+    """
+    This function takes in a data frame object, two numeric columns,
+    and produces either a scatter or line plot to visualize the relationship
+    between the two numerical features. Users can optionally change default
+    arguments for plot-type, color, title, size of text, color-scheme, and
+    toggle log transformation for the x and y axis.
+    Parameters
+    ----------
+    data : pandas.core.frame.DataFrame
+       Input dataframe object.
+    xval : str
+      Variable used to represent the x-axis.
+    yval : str
+      Variable used to represent the y-axis.
+    plot_type : str
+      Variable used to represent the graphical relationship between xval and yval, options are scatter or line plot.
+    color : str, optional
+      Variable used to group the data ponts in different colors.
+    tilte : str, optional
+      Variable used to set the title of the plot.
+    font_size  : int, optional
+      Variable used to set the size of the axis labels and title.
+    color_scheme: str, optional
+      The color scheme used for the plot.
+      Other color schemes can be "accent", "category10", "category20", "category20b", "dark2", etc.
+      Other proper color scheme reference can be found in https://vega.github.io/vega/docs/schemes/
+    plot_width: int, optional
+      The width of the plot.
+    plot_height: int, optional
+      The height of the plot.
+    x_transform : bool, optional
+      Determines whether a log transformation occurs on the x-axis.
+    y_transform : bool, optional
+      Determines whether a log transformation occurs on the y-axis.
+    Returns
+    -------
+    `altair`
+      Scatter plot or Line plot of user-specified variables.
+    Examples
+    --------
+    >>> import altair as alt
+    >>> import pandas as pd
+    >>> import numpy as np
+    >>> from simpler_eda.numerical_eda import numerical_plot
+    >>> from vega_datasets import data
+    >>> numerical_plot(data.cars(), xval = "Horsepower", yval = "Acceleration", plot_type = "line",
+                 color = "Origin",
+                 title = " Horsepower vs Acceleration",
+                 font_size = 10)
+    """
     # Defensive programming: Check if user provides valid inputs
 
     # Ensure title variable is specified by the user
