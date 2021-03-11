@@ -1,27 +1,27 @@
 import altair as alt
-import numpy as np
 import pandas as pd
+
 
 def categorical_eda(
     data,
     xval,
-    plot_type = "histogram",
-    color = None,
-    title = None,
-    font_size = 10,
-    color_scheme = "tableau20",
-    plot_height = 150,
-    plot_width = 200,
-    opacity = 1,
-    facet_factor = None,
-    facet_col = None
+    plot_type="histogram",
+    color=None,
+    title=None,
+    font_size=10,
+    color_scheme="tableau20",
+    plot_height=150,
+    plot_width=200,
+    opacity=1,
+    facet_factor=None,
+    facet_col=None,
 ):
     """
     This function takes in a data frame object and one categorical
     feature, to produce a histogram plot that visualizes the
     distribution of the feature. User can also choose to plot density
-    graph of the feature by specifing in plot_type. 
-    The function also offers customization on color, plot title, 
+    graph of the feature by specifing in plot_type.
+    The function also offers customization on color, plot title,
     font size, color-scheme, plot size and other common configurations.
 
     Parameters
@@ -31,8 +31,9 @@ def categorical_eda(
     xval : str
       Variable used to represent the x-axis.
     plot_type : str, optional
-      Variable used to specify plot type. Options include "histogram" 
-      and "density". When "density" is selected, the variable yval becomes obsolete.
+      Variable used to specify plot type. Options include "histogram"
+      and "density". When "density" is selected, the variable yval becomes
+      obsolete.
     color : str, optional
       Variable used to set the color of the marks in the plot object.
     tilte : str, optional
@@ -65,15 +66,16 @@ def categorical_eda(
     >>> from simpler_eda.categorical_eda import categorical_plot
     >>> from vega_datasets import data
     >>> cars = data.cars()
-    >>> categorical_plot(data = cars, 
-                        xval = "Origin", 
+    >>> categorical_plot(data = cars,
+                        xval = "Origin",
                         color = "Horsepower",
-                        title = "Histogram of Origin in Different Levels of Horsepower",
+                        title = "Histogram of Origin in Different Levels of
+                        Horsepower",
                         plot_height = 100,
                         plot_width = 200
                         )
     """
-    #Checking for valid inputs:
+    # Checking for valid inputs:
     if not isinstance(data, pd.DataFrame):
         raise Exception("the input data has to be a dataframe.")
     if facet_factor is None and facet_col is not None:
@@ -82,70 +84,92 @@ def categorical_eda(
         raise Exception("Specify facet_col for facetting the plot")
     if plot_type not in ["histogram", "density"]:
         raise Exception("plot_type must be either 'histogram' or 'density'")
-    if opacity <= 0 or opacity >1:
+    if opacity <= 0 or opacity > 1:
         raise Exception("opacity must be in range (0, 1)")
     if xval not in data.columns:
         raise Exception("xval must be a feature in the input dataframe")
     if color is not None and color not in data.columns:
         raise Exception("color must be a feature in the input dataframe")
 
-    
-    if facet_factor == None:
+    if facet_factor is None:
         if plot_type == "histogram":
-            categorical_plot = alt.Chart(data=data, title=title).mark_bar().encode(
-                    x = alt.X(xval),
-                    y = "count()",
-                    color = alt.Color(color, scale=alt.Scale(scheme=color_scheme))
-                ).properties(width=plot_width, height=plot_height
-                ).configure_title(fontSize = font_size
-                ).configure_axis(
-                    labelFontSize=font_size,
-                    titleFontSize=font_size
+            categorical_plot = (
+                alt.Chart(data=data, title=title)
+                .mark_bar()
+                .encode(
+                    x=alt.X(xval),
+                    y="count()",
+                    color=alt.Color(
+                        color, scale=alt.Scale(scheme=color_scheme)
+                    ),
                 )
-        
+                .properties(width=plot_width, height=plot_height)
+                .configure_title(fontSize=font_size)
+                .configure_axis(
+                    labelFontSize=font_size, titleFontSize=font_size
+                )
+            )
+
         else:
-            categorical_plot = alt.Chart(data=data, title=title).transform_density(
-                    xval,
-                    groupby=[color],
-                    as_=[xval, "density"]
-                ).mark_area(opacity=opacity).encode(
-                    x = xval,
-                    y = "density:Q",
-                    color=alt.Color(color, scale=alt.Scale(scheme=color_scheme))
-                ).properties(width=plot_width, height=plot_height
-                ).configure_title(fontSize = font_size
-                ).configure_axis(
-                    labelFontSize=font_size,
-                    titleFontSize=font_size
+            categorical_plot = (
+                alt.Chart(data=data, title=title)
+                .transform_density(
+                    xval, groupby=[color], as_=[xval, "density"]
                 )
+                .mark_area(opacity=opacity)
+                .encode(
+                    x=xval,
+                    y="density:Q",
+                    color=alt.Color(
+                        color, scale=alt.Scale(scheme=color_scheme)
+                    ),
+                )
+                .properties(width=plot_width, height=plot_height)
+                .configure_title(fontSize=font_size)
+                .configure_axis(
+                    labelFontSize=font_size, titleFontSize=font_size
+                )
+            )
     else:
         if plot_type == "histogram":
-            categorical_plot = alt.Chart(data=data).mark_bar().encode(
-                    x = alt.X(xval),
-                    y = "count()",
-                    color = alt.Color(color, scale=alt.Scale(scheme=color_scheme))
-                ).properties(width=plot_width, height=plot_height
-                ).facet(facet_factor, columns = facet_col, title=title
-                ).configure_title(fontSize = font_size
-                ).configure_axis(
-                    labelFontSize=font_size,
-                    titleFontSize=font_size
+            categorical_plot = (
+                alt.Chart(data=data)
+                .mark_bar()
+                .encode(
+                    x=alt.X(xval),
+                    y="count()",
+                    color=alt.Color(
+                        color, scale=alt.Scale(scheme=color_scheme)
+                    ),
                 )
-        
+                .properties(width=plot_width, height=plot_height)
+                .facet(facet_factor, columns=facet_col, title=title)
+                .configure_title(fontSize=font_size)
+                .configure_axis(
+                    labelFontSize=font_size, titleFontSize=font_size
+                )
+            )
+
         else:
-            categorical_plot = alt.Chart(data=data).transform_density(
-                    xval,
-                    groupby=[color],
-                    as_=[xval, "density"]
-                ).mark_area(opacity=opacity).encode(
-                    x = xval,
-                    y = "density:Q",
-                    color=alt.Color(color, scale=alt.Scale(scheme=color_scheme))
-                ).properties(width=plot_width, height=plot_height
-                ).facet(facet_factor, columns = facet_col, title=title
-                ).configure_title(fontSize = font_size
-                ).configure_axis(
-                    labelFontSize=font_size,
-                    titleFontSize=font_size)
-        
+            categorical_plot = (
+                alt.Chart(data=data)
+                .transform_density(
+                    xval, groupby=[color], as_=[xval, "density"]
+                )
+                .mark_area(opacity=opacity)
+                .encode(
+                    x=xval,
+                    y="density:Q",
+                    color=alt.Color(
+                        color, scale=alt.Scale(scheme=color_scheme)
+                    ),
+                )
+                .properties(width=plot_width, height=plot_height)
+                .facet(facet_factor, columns=facet_col, title=title)
+                .configure_title(fontSize=font_size)
+                .configure_axis(
+                    labelFontSize=font_size, titleFontSize=font_size
+                )
+            )
+
     return categorical_plot
