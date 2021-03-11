@@ -1,9 +1,7 @@
 import altair as alt
 import numpy as np
 import pandas as pd
-from vega_datasets import data
 import warnings
-import pytest
 from pandas.api.types import is_numeric_dtype
 
 
@@ -36,17 +34,21 @@ def numerical_eda(
     yval : str
       Variable used to represent the y-axis.
     color : str
-      Variable used to group the data ponts in different colors based on a variable in the dataframe.
+      Variable used to group the data ponts in different colors based on a
+      variable in the dataframe.
     plot_type : str, optional
-      Variable used to represent the graphical relationship between xval and yval, options are scatter or line plot.
+      Variable used to represent the graphical relationship between xval and
+      yval, options are scatter or line plot.
     tilte : str, optional
       Variable used to set the title of the plot.
     font_size  : int, optional
       Variable used to set the size of the axis labels and title.
     color_scheme: str, optional
       The color scheme used for the plot.
-      Other color schemes can be "accent", "category10", "category20", "category20b", "dark2", etc.
-      Other proper color scheme reference can be found in https://vega.github.io/vega/docs/schemes/
+      Other color schemes can be "accent", "category10", "category20",
+      "category20b", "dark2", etc.
+      Other proper color scheme reference can be found in
+      https://vega.github.io/vega/docs/schemes/
     plot_width: int, optional
       The width of the plot.
     plot_height: int, optional
@@ -66,7 +68,8 @@ def numerical_eda(
     >>> import numpy as np
     >>> from simpler_eda.numerical_eda import numerical_plot
     >>> from vega_datasets import data
-    >>> numerical_plot(data.cars(), xval = "Horsepower", yval = "Acceleration", plot_type = "line",
+    >>> numerical_plot(data.cars(), xval = "Horsepower", yval = "Acceleration",
+    plot_type = "line",
                  color = "Origin",
                  title = " Horsepower vs Acceleration",
                  font_size = 10)
@@ -77,13 +80,16 @@ def numerical_eda(
     if title is None:
         title = f"{xval} vs {yval} {plot_type} plot"
 
-    error_one = "TypeError: Data must be entered as a pandas dataframe."
+    error_one = """TypeError: Data must be entered as a pandas
+        dataframe."""
     assert isinstance(data, pd.DataFrame), error_one
 
-    error_two = "TypeError: X-axis variable must be entered as a String."
+    error_two = """TypeError: X-axis variable must be entered
+        as a String."""
     assert isinstance(xval, str), error_two
 
-    error_three = "TypeError: Y-axis variable must be entered as a String."
+    error_three = """TypeError: Y-axis variable must be entered as a
+        String."""
     assert isinstance(yval, str), error_three
 
     error_four = "TypeError: x_transform must be of type boolean."
@@ -92,7 +98,8 @@ def numerical_eda(
     error_five = "TypeError: y_transform must be of type boolean."
     assert isinstance(y_transform, bool), error_five
 
-    error_six = "InputValueError: plot_type must be either 'scatter' or 'line'."
+    error_six = """InputValueError: plot_type must be either 'scatter' or
+    'line'."""
     assert plot_type in ["scatter", "line"], error_six
 
     error_seven = "TypeError: plot_width must be an integer."
@@ -126,10 +133,10 @@ def numerical_eda(
 
     # Ensure variable is numeric
     error_msg_x = "Your x-variable needs to be numeric."
-    assert pd.api.types.is_numeric_dtype(df[xval]), error_msg_x
+    assert is_numeric_dtype(df[xval]), error_msg_x
 
     error_msg_y = "Your y-variable needs to be numeric."
-    assert pd.api.types.is_numeric_dtype(df[yval]), error_msg_y
+    assert is_numeric_dtype(df[yval]), error_msg_y
 
     # Toggle a log transformation on the x-axis
     warn_one = "Can't have negative x values with np.log"
@@ -157,7 +164,8 @@ def numerical_eda(
     yval = str(yval).replace("_", " ")
     color = str(color).replace("_", " ")
 
-    # Plotting code for the function, code for either plot_type in ['line', 'scatter']
+    # Plotting code for the function, code for either plot_type in ['line',
+    # 'scatter']
     # Code for the scatter plot
     if plot_type == "scatter":
         numerical_eda = (
@@ -169,7 +177,9 @@ def numerical_eda(
                 alt.Color(color, scale=alt.Scale(scheme=color_scheme)),
             )
             .properties(width=plot_width, height=plot_height)
-        ).configure_axis(titleFontSize=font_size, labelFontSize=font_size, labelAngle=0)
+        ).configure_axis(
+              titleFontSize=font_size, labelFontSize=font_size, labelAngle=0
+        )
 
     # Code for the line plot
     else:
@@ -186,5 +196,4 @@ def numerical_eda(
                 titleFontSize=font_size, labelFontSize=font_size, labelAngle=0
             )
         )
-
     return numerical_eda
