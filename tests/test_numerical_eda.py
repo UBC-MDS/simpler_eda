@@ -1,8 +1,5 @@
-import altair as alt
-import numpy as np
 import pandas as pd
 from vega_datasets import data
-import warnings
 import pytest
 from simpler_eda.numerical_eda import numerical_eda
 
@@ -33,7 +30,8 @@ def test_numerical_eda():
         The test should pass and no asserts should be displayed.
     """
 
-    # Unit test for a scatter plot with no transformations and grouping by color
+    # Unit test for a scatter plot with no transformations and grouping
+    # by color
     plot1 = numerical_eda(
         cars,
         xval="Horsepower",
@@ -55,7 +53,8 @@ def test_numerical_eda():
     assert (
         plot1.encoding.y.shorthand == "Acceleration"
     ), "Acceleration should be mapped to the y axis"
-    assert plot1.mark["type"] in ["circle"], "the plot type (mark) should be a point"
+    assert plot1.mark["type"] in ["circle"], """the plot type (mark) should be
+    a point"""
     assert (
         plot1.title.text == "Horsepower vs Acceleration scatter plot"
     ), "The plot title should be Horsepower vs Acceleration scatter plot"
@@ -86,13 +85,15 @@ def test_numerical_eda():
     assert (
         plot2.encoding.y.shorthand == "Displacement"
     ), "Displacement should be mapped to the y axis"
-    assert plot2.mark["type"] in ["line"], "the plot type (mark) should be a line"
+    assert plot2.mark["type"] in ["line"], """the plot type (mark) should be a
+    line"""
     assert plot2.title.text == "Line", "The plot title should be Line"
     assert (
         plot2.encoding.color.shorthand == "Origin"
     ), "The color of the mark should be based on Origin"
 
-    # Unit test for a scatter plot with transformations and using color with categorical
+    # Unit test for a scatter plot with transformations and using color
+    # with categorical
     plot3 = numerical_eda(
         cars,
         xval="Displacement",
@@ -117,8 +118,10 @@ def test_numerical_eda():
     assert (
         plot3.encoding.y.shorthand == "Acceleration"
     ), "Acceleration should be mapped to the y axis"
-    assert plot3.mark["type"] in ["circle"], "the plot type (mark) should be a point"
-    assert plot3.title.text == "Scatterplot", "The plot title should be Scatterplot"
+    assert plot3.mark["type"] in ["circle"], """the plot type (mark) should
+    be a point"""
+    assert plot3.title.text == "Scatterplot", """The plot title should be
+    Scatterplot"""
     assert (
         plot3.encoding.color.shorthand == "Origin"
     ), "The color of the groupings should be origin"
@@ -153,7 +156,8 @@ def test_input_type():
             plot_width=400,
         )
     except Exception as e:
-        assert str(e) == "TypeError: Data must be entered as a pandas dataframe."
+        assert str(e) == """TypeError: Data must be entered as a pandas
+        dataframe."""
 
     # Wrong input for xval, must be string
     try:
@@ -170,7 +174,8 @@ def test_input_type():
             plot_width=400,
         )
     except Exception as e:
-        assert str(e) == "TypeError: X-axis variable must be entered as a String."
+        assert str(e) == """TypeError: X-axis variable must be entered
+        as a String."""
 
     # Wrong input for yval, must be string
     try:
@@ -187,7 +192,8 @@ def test_input_type():
             plot_width=400,
         )
     except Exception as e:
-        assert str(e) == "TypeError: Y-axis variable must be entered as a String."
+        assert str(e) == """TypeError: Y-axis variable must be entered as a
+        String."""
 
     # Wrong input type for x_transform, must be boolean
     try:
@@ -449,13 +455,15 @@ def test_input_value():
         )
     except Exception as e:
         assert (
-            str(e) == "InputValueError: plot_type must be either 'scatter' or 'line'."
+            str(e) == """InputValueError: plot_type must be either 'scatter' or
+    'line'."""
         )
 
 
 def test_negX(test_negative):
     """
-    Test whether the function returns warning for negative values of xval for log transformation
+    Test whether the function returns warning for negative values of xval for
+    log transformation
 
     Parameters
     ----------
@@ -486,7 +494,8 @@ def test_negX(test_negative):
 
 def test_negY(test_negative):
     """
-    Test whether the function returns warning for negative values of yval for log transformation
+    Test whether the function returns warning for negative values of yval for
+    log transformation
 
     Parameters
     ----------
