@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "simpler_eda"
-version = "0.1.3"
+version = "0.1.4"
 description = "Python package that eases the pain of plotting numeric and categorical features in Altair"
 authors = ["Nicholas Wu <misternicholaswu@gmail.com>"]
 license = "MIT"
