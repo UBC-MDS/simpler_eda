@@ -14,6 +14,11 @@ altair = "^4.1.0"
 [tool.poetry.dev-dependencies]
 pytest-cov = "^2.11.1"
 flake8 = "^3.8.4"
+pytest = "^6.2.2"
+codecov = "^2.1.11"
+python-semantic-release = "^7.15.0"
+Sphinx = "^3.5.2"
+sphinxcontrib-napoleon = "^0.7"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
