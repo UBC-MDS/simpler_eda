@@ -29,7 +29,12 @@ The simpler_eda package improves upon existing functions in the Altair packages 
 
 ## Dependencies
 
-- TODO
+### Dependencies
+
+- [python = ^3.8](https://www.python.org/)
+- [pandas = ^1.2.3](https://pandas.pydata.org/)
+- [altair = ^4.1.0](https://altair-viz.github.io/)
+- [vega-datasets = ^0.9.0](https://github.com/altair-viz/vega_datasets)
 
 ## Usage
 
