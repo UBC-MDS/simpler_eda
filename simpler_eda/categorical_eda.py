@@ -66,7 +66,7 @@ def categorical_eda(
     >>> from simpler_eda.categorical_eda import categorical_plot
     >>> from vega_datasets import data
     >>> cars = data.cars()
-    >>> categorical_plot(data = cars,
+    >>> categorical_eda(data = cars,
                         xval = "Origin",
                         color = "Horsepower",
                         title = "Histogram of Origin in Different Levels of
