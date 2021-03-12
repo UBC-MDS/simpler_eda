@@ -4,6 +4,10 @@ version = "0.1.2"
 description = "Python package that eases the pain of plotting numeric and categorical features in Altair"
 authors = ["Nicholas Wu <misternicholaswu@gmail.com>"]
 license = "MIT"
+readme = "README.md"
+homepage = "https://github.com/UBC-MDS/simpler_eda"
+repository = "https://github.com/UBC-MDS/simpler_eda"
+documentation = 'https://simpler_eda.readthedocs.io'
 
 [tool.poetry.dependencies]
 python = "^3.8"
