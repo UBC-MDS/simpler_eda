@@ -58,9 +58,9 @@ corr_map(df,
 import altair as alt
 import pandas as pd
 import numpy as np
-from simpler_eda.numerical_eda import numerical_plot
+from simpler_eda.numerical_eda import numerical_eda
 from vega_datasets import data
-numerical_plot(data.cars(), xval = "Horsepower", yval = "Acceleration",
+numerical_eda(data.cars(), xval = "Horsepower", yval = "Acceleration",
     plot_type = "scatter",
                  color = "Origin",
                  title = " Horsepower vs Acceleration",
@@ -75,7 +75,7 @@ numerical_plot(data.cars(), xval = "Horsepower", yval = "Acceleration",
 import altair as alt
 import numpy as np
 import pandas as pd
-from simpler_eda.categorical_eda import categorical_plot
+from simpler_eda.categorical_eda import categorical_eda
 from vega_datasets import data
 cars = data.cars()
 categorical_eda(data = cars,
