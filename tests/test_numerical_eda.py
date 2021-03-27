@@ -8,6 +8,10 @@ cars = data.cars()
 
 @pytest.fixture
 def test_negative():
+    """
+    Function used to create a dataframe with negative entries to
+    be tested for with defensive programming.
+    """
     negative_data = pd.DataFrame(
         {
             "x": [1, 2, 6, 7, 83, -1],
