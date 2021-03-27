@@ -32,6 +32,7 @@ The simpler_eda package improves upon existing functions in the Altair packages 
 
 -   [python = \^3.8](https://www.python.org/)
 -   [pandas = \^1.2.3](https://pandas.pydata.org/)
+-   [numpy = \^1.19.1](https://numpy.org/)
 -   [altair = \^4.1.0](https://altair-viz.github.io/)
 -   [vega-datasets = \^0.9.0](https://github.com/altair-viz/vega_datasets)
 
